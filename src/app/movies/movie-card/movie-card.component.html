@@ -16,9 +16,7 @@
       <span class="rating-left">
         <span
           class="rating-bar"
-          [style.transform]="
-            'rotate(' + (180 - (10 - movie.vote_average) * 10) + 'deg)'
-          "
+          [style.transform]="'rotate(' + movie.vote_average * 18 + 'deg)'"
         ></span>
       </span>
       <span class="rating-right">
