@@ -2,7 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { environment } from '../environments/environment';
 import {Observable} from 'rxjs'
-import { IMovie, IMovieResponse } from './interfaces/movie.interface';
+import { IMovie, IMovieResponse, IUniqueMovie } from './interfaces/movie.interface';
 
 @Injectable({
   providedIn: 'root'
@@ -19,8 +19,8 @@ export class MoviesService {
     })
   }
 
-  fetchProductById(id: number): Observable<IMovie> {
-    return this._HttpClient.get<IMovie>(`${environment.BASE_URL}/movie/${id}`)
+  fetchProductById(id: number): Observable<IUniqueMovie> {
+    return this._HttpClient.get<IUniqueMovie>(`${environment.BASE_URL}/movie/${id}`)
   }
 
   fetchRecommendedMovies(movieId: number): Observable<IMovieResponse> {
