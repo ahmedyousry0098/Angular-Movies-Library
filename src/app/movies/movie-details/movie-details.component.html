@@ -1,0 +1,26 @@
+
+<div id="dp-container" *ngIf="movie" class="d-flex justify-content-center align-items-center align-content-center my-auto">
+    <div class="inner-container" class="w-100 overflow-hidden position-relative">
+        <div class="w-100 h-100 overflow-hidden z-0 position-absolute">
+            <img [src]="baseURL+movie.backdrop_path" class="w-100 opacity-35 center " style="min-height: 100%;">
+        </div>
+        <div class="container d-flex justify-content-center align-items-center py-3 z-1">
+            <div class="row">
+                <div class="col-3 ">
+                    <img [src]="baseURL+movie.poster_path" class=" w-100 opacity-100 rounded-3">
+                </div>
+                <div class="col-9">
+                    <div>
+                        <h1 class="m-0 p-0">{{movie.title}}</h1>
+                        <p class="text-muted">
+                            <span>{{movie.release_date}}</span>
+                            <span> ( {{movie.original_language}} )</span>
+                            <span class="fs-4"> &#x2022; </span>
+                        </p>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

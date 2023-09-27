@@ -1,0 +1,14 @@
+
+#dp-container {
+    min-height: 100vh;
+    margin: 0 auto !important;
+}
+
+.inner-container {
+    height: 80vh !important;
+}
+
+.opacity-35 {
+    opacity: 35%;
+    filter: blur(1px)
+}
