@@ -1,0 +1,8 @@
+<div class="container">
+    <div class="mt-">
+        <app-search-input (queryEmitter)="changeSearchTerm($event)"></app-search-input>
+    </div>
+    <div *ngIf="movies">
+        <app-movie-card [moviesDataResponse]="movies"></app-movie-card>
+    </div>    
+</div>

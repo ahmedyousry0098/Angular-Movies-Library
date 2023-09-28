@@ -14,6 +14,8 @@ import { ExtractYearPipe } from '../pipes/extract-year.pipe';
 import { NgxSpinnerModule } from 'ngx-spinner';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { PaginationComponent } from './pagination/pagination.component';
+import { SearchComponent } from './search/search.component';
+import { SharedModule } from '../shared/shared.module';
 
 @NgModule({
   declarations: [
@@ -23,6 +25,7 @@ import { PaginationComponent } from './pagination/pagination.component';
     ConvertTimePipe,
     ExtractYearPipe,
     PaginationComponent,
+    SearchComponent,
   ],
   imports: [
     CommonModule,
@@ -33,6 +36,7 @@ import { PaginationComponent } from './pagination/pagination.component';
     NgxSpinnerModule.forRoot({ type: 'pacman' }),
     BrowserAnimationsModule,
     NgbPaginationModule,
+    SharedModule
   ],
 })
 export class MoviesModule {}
