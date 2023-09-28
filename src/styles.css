@@ -8,3 +8,14 @@
 .nav-app {
     background-color: var(--main_yellow) !important;
 }
+
+.search-icon {
+    background-color: var(--main_yellow);
+    border-radius: 10px;
+}
+
+.search-icon:hover {
+    opacity: 0.8;
+    box-shadow: -5px 3px 10px rgba(255, 200, 0, 0.1);
+    transition: 0.5s;
+}
