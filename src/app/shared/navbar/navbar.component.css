@@ -1,0 +1,16 @@
+
+.pointer {
+    cursor: pointer;
+}
+
+.active, .active > fa-icon {
+    background-color: black;
+    color: white !important;
+    border-radius: 5px;
+    transition: 0.5s;
+    padding: 5px;
+}
+
+.active:hover {
+    border-radius: 15px;
+}
