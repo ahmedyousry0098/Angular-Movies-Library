@@ -3,8 +3,8 @@ import { RouterModule, Routes } from '@angular/router';
 
 const routes: Routes = [
   {
-    path: 'movies', 
-    loadChildren: () => import('./movies/movies.module').then(module => module.MoviesModule)
+    path: '', 
+    loadChildren: () => import('./movies/movies-routing.module').then(module => module.MoviesRoutingModule)
   }
 ];
 

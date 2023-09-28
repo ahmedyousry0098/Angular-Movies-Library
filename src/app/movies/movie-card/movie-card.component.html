@@ -1,6 +1,6 @@
 <div class="row row-cols-1 row-cols-md-6 g-4 container mx-auto my-5">
   <div class="col" *ngFor="let movie of moviesDataResponse">
-    <div [routerLink]="['details', movie.id]">
+    <div [routerLink]="['/details', movie.id]">
       <img
         class="card-img-top rounded-4"
         src="https://image.tmdb.org/t/p/w500/{{ movie.poster_path }}"

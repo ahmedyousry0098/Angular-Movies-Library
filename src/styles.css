@@ -4,3 +4,7 @@
     --main_yellow: rgb(255, 227, 83);
     --main-gray: rgb(243, 241, 241)
 }
+
+.nav-app {
+    background-color: var(--main_yellow) !important;
+}
