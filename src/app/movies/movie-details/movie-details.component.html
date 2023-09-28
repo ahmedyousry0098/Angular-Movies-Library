@@ -40,11 +40,13 @@
 </div>
 
 <ng-template #loading>
-    <ngx-spinner 
-        bdColor = "rgba(51,51,51,0.8)" 
-        size = "medium" color = "#fff" 
-        type = "pacman" 
-    >
-        <p style="color: white" class="fs-1 text-center" > Loading... </p>
-    </ngx-spinner>
+    <div class="d-flex justify-content-center align-items-center">
+        <ngx-spinner 
+            bdColor = "rgba(20,20,20,0.7)" 
+            size = "medium" color = "#fff" 
+            type = "pacman" 
+            >
+            <p class="fs-1 text-center text-muted" > Loading... </p>
+        </ngx-spinner>
+    </div>
 </ng-template>

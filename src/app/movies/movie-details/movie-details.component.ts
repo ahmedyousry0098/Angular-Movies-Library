@@ -27,16 +27,12 @@ export class MovieDetailsComponent {
     this._ActivatedRoute.paramMap.subscribe(params => {
       this.movieId = +params.get('id')!
     })
-    setTimeout( () => {
-      this.fetchProduct(this.movieId)
-    }, 1000)
+    this.fetchProduct(this.movieId)
   }
 
   fetchProduct(id: number) {
     this._MoviesService.fetchProductById(id).subscribe({
       next: (movie) => {
-        console.log(movie);
-        
         this.movie = movie
         this._Spinner.hide();
       },

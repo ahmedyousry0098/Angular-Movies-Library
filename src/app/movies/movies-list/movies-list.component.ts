@@ -9,10 +9,12 @@ import { IMovie, IMovieResponse } from '../interfaces/movie.interface';
 })
 export class MoviesListComponent {
   moviesDataResponse: IMovie[] = [];
+  currentPage!: any;
+  page!: any;
   constructor(private moviesService: MoviesService) {}
   ngOnInit() {
     this.moviesService.fetchProductsPage().subscribe((data) => {
-      console.log(data.results);
+      console.log(this.currentPage);
       this.moviesDataResponse = data.results;
     });
   }
