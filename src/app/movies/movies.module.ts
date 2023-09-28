@@ -13,6 +13,7 @@ import { ConvertTimePipe } from '../pipes/convert-time.pipe';
 import { ExtractYearPipe } from '../pipes/extract-year.pipe';
 import { NgxSpinnerModule } from 'ngx-spinner';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { PaginationComponent } from './pagination/pagination.component';
 
 @NgModule({
   declarations: [
@@ -21,6 +22,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
     MovieCardComponent,
     ConvertTimePipe,
     ExtractYearPipe,
+    PaginationComponent,
   ],
   imports: [
     CommonModule,
