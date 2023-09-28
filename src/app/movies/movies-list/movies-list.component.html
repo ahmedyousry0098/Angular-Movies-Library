@@ -1,12 +1,9 @@
 <div class="container">
   <h2>Popular Movies</h2>
   <app-movie-card [moviesDataResponse]="moviesDataResponse"></app-movie-card>
-  <div class="d-flex justify-content-center">
-    <ngb-pagination
-      [collectionSize]="80"
-      [(page)]="page"
-      aria-label="Default pagination"
-      currentPage
-    ></ngb-pagination>
-  </div>
+  <app-pagination 
+    (pageEmitter)="fetchProducts($event)"
+    [collectionSize]="collectionSize"
+    [pageSize]="pageSize"
+    ></app-pagination>
 </div>

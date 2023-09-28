@@ -1,0 +1,12 @@
+<div class="d-flex justify-content-center">
+    <ngb-pagination
+      [collectionSize]="collectionSize"
+      [pageSize]="pageSize"
+      [(page)]="currentPage"
+      [maxSize]="10"
+      aria-label="Default pagination"
+      currentPage
+      [rotate]="true"
+      (pageChange)="sendPageNumber($event)"
+    ></ngb-pagination>
+</div>

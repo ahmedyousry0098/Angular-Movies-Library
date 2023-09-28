@@ -1,6 +1,7 @@
-import { Component } from '@angular/core';
+import { Component, SimpleChange } from '@angular/core';
 import { MoviesService } from '../movies.service';
 import { IMovie, IMovieResponse } from '../interfaces/movie.interface';
+import { BehaviorSubject } from 'rxjs';
 
 @Component({
   selector: 'app-movies-list',
@@ -9,13 +10,19 @@ import { IMovie, IMovieResponse } from '../interfaces/movie.interface';
 })
 export class MoviesListComponent {
   moviesDataResponse: IMovie[] = [];
-  currentPage!: any;
-  page!: any;
+  ngbPage: number = 1
+  pageSize: number = 20
+  collectionSize: number = 10000 // assuming free membership
+
   constructor(private moviesService: MoviesService) {}
   ngOnInit() {
-    this.moviesService.fetchProductsPage().subscribe((data) => {
-      console.log(this.currentPage);
+    this.fetchProducts(1)
+  }
+
+  fetchProducts(page: number) {
+    this.moviesService.fetchProductsPage(page).subscribe((data) => {
       this.moviesDataResponse = data.results;
-    });
+      this.pageSize = data.results.length
+    })
   }
 }
