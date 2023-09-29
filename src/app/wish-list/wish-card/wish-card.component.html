@@ -11,7 +11,8 @@
                 <div class="w-100">
                     <div class="w-100 d-flex align-items-center justify-content-between mt-3">
                         <h3>{{movie.title}}</h3>
-                        <fa-icon class="unlike-btn" [icon]="heartIcon" size="xl"></fa-icon>
+                        <fa-icon class="unlike-btn" [icon]="heartIcon" size="xl"
+                            (click)="removeFromFavorite(movie.id)"></fa-icon>
                     </div>
                     <p style="color: #858585; font-size: small;">{{movie.release_date | date }}</p>
                     <div class="mt-2 mb-3" style="vertical-align: middle;">
