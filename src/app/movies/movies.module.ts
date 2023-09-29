@@ -36,7 +36,7 @@ import { SharedModule } from '../shared/shared.module';
     NgxSpinnerModule.forRoot({ type: 'pacman' }),
     BrowserAnimationsModule,
     NgbPaginationModule,
-    SharedModule
+    SharedModule,
   ],
 })
 export class MoviesModule {}
