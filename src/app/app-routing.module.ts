@@ -3,13 +3,23 @@ import { RouterModule, Routes } from '@angular/router';
 
 const routes: Routes = [
   {
-    path: '', 
-    loadChildren: () => import('./movies/movies-routing.module').then(module => module.MoviesRoutingModule)
-  }
+    path: '',
+    loadChildren: () =>
+      import('./movies/movies-routing.module').then(
+        (module) => module.MoviesRoutingModule
+      ),
+  },
+  {
+    path: '',
+    loadChildren: () =>
+      import('./wish-list/wish-list-routing.module').then(
+        (module) => module.WishListRoutingModule
+      ),
+  },
 ];
 
 @NgModule({
   imports: [RouterModule.forRoot(routes)],
-  exports: [RouterModule]
+  exports: [RouterModule],
 })
-export class AppRoutingModule { }
+export class AppRoutingModule {}

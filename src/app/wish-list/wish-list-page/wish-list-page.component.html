@@ -1,0 +1,8 @@
+<main class="p-md-5">
+    <div class="container m-auto pt-4">
+        <h1>Wish-list</h1>
+        <div class="row row-cols-lg-2 mt-2">
+            <app-wish-card *ngFor="let movie of moviesDataResponse" [movie]="movie"></app-wish-card>
+        </div>
+    </div>
+</main>

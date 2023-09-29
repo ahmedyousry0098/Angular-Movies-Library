@@ -1,0 +1,25 @@
+#img-container {
+  height: 250px;
+  width: 180px;
+}
+.unlike-btn {
+  color:#FFE353;
+  transition: all 0.3s ease-in-out;
+}
+.unlike-btn:hover {
+  cursor: pointer;
+  scale: 1.2;
+}
+.unlike-btn:active{
+  color: black;
+}
+@media (max-width: 1200px) {
+  #img-container {
+    width: 150px;
+  }
+}
+@media (max-width: 768px) {
+  #img-container {
+    width: 100%;
+  }
+}
