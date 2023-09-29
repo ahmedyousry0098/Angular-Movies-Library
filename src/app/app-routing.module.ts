@@ -11,8 +11,16 @@ const routes: Routes = [
       ),
   },
   {
+    path: '',
+    loadChildren: () =>
+      import('./wish-list/wish-list-routing.module').then(
+        (module) => module.WishListRoutingModule
+      ),
+},
+  {
     path: '**',
     component: PageNotFoundComponent,
+
   },
 ];
 
