@@ -79,7 +79,7 @@
 .rating.yellow .rating-bar {
   transform: rotate(190deg);
 
-  border-color: #fce357;
+  border-color: #fada26;
 }
 
 .rating.green .rating-left .rating-bar {
@@ -96,4 +96,8 @@
   100% {
     opacity: 1;
   }
+}
+
+.cardCursor {
+  cursor: pointer;
 }
