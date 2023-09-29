@@ -13,6 +13,7 @@ export class SearchComponent {
 
   searchTerm = new BehaviorSubject<string>('')
   movies?: IMovie[]
+  term!: string 
 
   constructor(
     private _Router: ActivatedRoute,
@@ -23,8 +24,9 @@ export class SearchComponent {
   ngOnInit() {
     this._Router.params.subscribe(() => {
       this.searchTerm.next(window.history.state.term)
+      this.term = window.history.state.term
       this.searchTerm.asObservable().subscribe(value => {
-        this.fetchMovies(value)
+          this.fetchMovies(value)
       })
     })
   }
@@ -32,8 +34,7 @@ export class SearchComponent {
   fetchMovies(searchTerm: string) {
     this._MoviesService.searchMovie(searchTerm).subscribe({
       next: (response) => {
-        this.movies = response.results
-        console.log(this.movies);
+        this.movies = response.results.filter(movie => movie.poster_path && movie.title)
       }, 
       error: (err) => {
         console.log(err);

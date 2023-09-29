@@ -1,4 +1,5 @@
-import { Component, EventEmitter, Output } from '@angular/core';
+import { Component, EventEmitter, Input, Output } from '@angular/core';
+import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { faSearch } from '@fortawesome/free-solid-svg-icons';
 
 @Component({
@@ -9,13 +10,21 @@ import { faSearch } from '@fortawesome/free-solid-svg-icons';
 export class SearchInputComponent {
   faSearch = faSearch
 
+  @Input() initialSearchTerm: string = ''
   @Output() queryEmitter = new EventEmitter<string>()
-  searchTerm: string = ""
+  searchForm = this.fb.group({
+    searchTerm: ['', [Validators.required, Validators.pattern(/^[a-zA-Z0-9\s]+$/)]]
+  })
   
-  constructor() {}
+  constructor(private fb: FormBuilder) {}
 
-  emitSearchQuery() {
-    return this.queryEmitter.emit(this.searchTerm)
+  ngOnInit() {
+    this.searchForm.setValue({searchTerm: this.initialSearchTerm})
   }
 
+  emitSearchQuery() {
+    if (this.searchForm.valid) {
+      return this.queryEmitter.emit(this.searchForm.value.searchTerm!)
+    }
+  }
 }

@@ -4,7 +4,7 @@ import { NavbarComponent } from './navbar/navbar.component';
 import { FooterComponent } from './footer/footer.component';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { RouterModule } from '@angular/router';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { SearchInputComponent } from './search-input/search-input.component';
 import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
 
@@ -21,7 +21,8 @@ import { PageNotFoundComponent } from './page-not-found/page-not-found.component
     CommonModule,
     FontAwesomeModule,
     RouterModule,
-    FormsModule
+    FormsModule,
+    ReactiveFormsModule
   ],
   exports: [
     NavbarComponent,

@@ -8,6 +8,8 @@ import { KeyAttacherInterceptor } from './interceptors/key-attacher.interceptor'
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { MoviesModule } from './movies/movies.module';
 import { SharedModule } from './shared/shared.module';
+import { WishListModule } from './wish-list/wish-list.module';
+import { ClipTextPipe } from './pipes/clip-text.pipe';
 
 @NgModule({
   declarations: [AppComponent],
@@ -15,6 +17,7 @@ import { SharedModule } from './shared/shared.module';
     BrowserModule,
     AppRoutingModule,
     MoviesModule,
+    WishListModule,
     SharedModule,
     HttpClientModule,
     NgbModule,
