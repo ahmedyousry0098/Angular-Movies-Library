@@ -1,9 +1,14 @@
-<form>
+<form [formGroup]="searchForm" (ngSubmit)="emitSearchQuery()" >
     <div class=" d-flex flex-row align-items-center justify-content-center">
         <div class="w-75 mx-3">
-            <input [(ngModel)]="searchTerm" [ngModelOptions]="{standalone: true}" class="form-control w-100 shadow-sm rounded-4 p-2" placeholder="Search" >
+            <input 
+                class="form-control w-100 shadow-sm rounded-4 p-2"
+                placeholder="Search"
+                type="text"
+                formControlName="searchTerm"
+            >
         </div>
-        <button class="p-3 search-icon border-0" (click)="emitSearchQuery()">
+        <button class="p-3 search-icon border-0" type="submit" [disabled]="searchForm.invalid">
             <fa-icon
                 [icon]="faSearch"
                 style="color: black"
@@ -11,5 +16,9 @@
                 class="p-0 m-0 my-auto search-icon">
             </fa-icon>
         </button>
+    </div>
+    <div *ngIf="searchForm.get('searchTerm')?.errors && searchForm.get('searchTerm')?.touched">
+        <p class="text-danger text-center" *ngIf="searchForm.get('searchTerm')?.getError('required')">Field Is Required</p>
+        <p class="text-danger text-center" *ngIf="searchForm.get('searchTerm')?.getError('pattern')">In-valid Pattern</p>
     </div>
 </form>
