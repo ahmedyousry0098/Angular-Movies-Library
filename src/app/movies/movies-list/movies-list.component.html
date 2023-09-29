@@ -1,9 +1,12 @@
 <div class="container">
   <h2>Popular Movies</h2>
+  <div class="mt-5">
+    <app-search-input (queryEmitter)="handleSearch($event)"></app-search-input>
+  </div>
   <app-movie-card [moviesDataResponse]="moviesDataResponse"></app-movie-card>
   <app-pagination 
     (pageEmitter)="fetchProducts($event)"
     [collectionSize]="collectionSize"
     [pageSize]="pageSize"
-    ></app-pagination>
+  ></app-pagination>
 </div>

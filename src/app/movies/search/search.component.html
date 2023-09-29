@@ -1,0 +1,18 @@
+<div class="container">
+    <div class="margin-top-30">
+        <app-search-input (queryEmitter)="changeSearchTerm($event)" [initialSearchTerm]="term" ></app-search-input>
+    </div>
+    <div *ngIf="movies && movies.length; else noResult" class="my-3">
+        <h2 class="mt-3">Results For: <span class="text-danger">( {{searchTerm.value}} )</span></h2>
+        <app-movie-card [moviesDataResponse]="movies"></app-movie-card>
+    </div>    
+</div>
+
+<ng-template #noResult>
+    <div class="d-flex align-items-center justify-content-center w-100 vh-100">
+        <p class="text-center text-muted h2">
+            I'm sorry, but the result of <span class="text-danger">( {{searchTerm.value}} )</span> you're searching for cannot be located at this time. 
+            Please try a different search query or check back later for possible updates.
+        </p>
+    </div>
+</ng-template>
