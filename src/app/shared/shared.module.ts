@@ -6,6 +6,7 @@ import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { RouterModule } from '@angular/router';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { SearchInputComponent } from './search-input/search-input.component';
+import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
 
 
 
@@ -13,7 +14,8 @@ import { SearchInputComponent } from './search-input/search-input.component';
   declarations: [
     NavbarComponent,
     FooterComponent,
-    SearchInputComponent
+    SearchInputComponent,
+    PageNotFoundComponent
   ],
   imports: [
     CommonModule,
