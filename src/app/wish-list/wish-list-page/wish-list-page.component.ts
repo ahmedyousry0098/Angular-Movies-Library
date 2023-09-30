@@ -7,20 +7,12 @@ import { IMovie } from 'src/app/movies/interfaces/movie.interface';
   styleUrls: ['./wish-list-page.component.css'],
 })
 export class WishListPageComponent {
-  moviesDataResponse: IMovie[] = [];
-  ngbPage: number = 1;
-  pageSize: number = 20;
-  collectionSize: number = 10000; // assuming free membership
+  allFavoriteMovies: IMovie[] = [];
   constructor(private moviesService: MoviesService) {}
   ngOnInit() {
-    this.fetchFavorites(1);
-  }
-  fetchFavorites(page: number) {
-    this.moviesService.fetchFavoriteMovies(page).subscribe((data) => {
-      this.moviesDataResponse = data.results;
-      console.log(this.moviesDataResponse);
-      
-      this.pageSize = data.results.length;
+    // this.fetchFavorites(1);
+    this.moviesService.getFavorites().subscribe((arr) => {
+      this.allFavoriteMovies = arr;
     });
   }
 }
