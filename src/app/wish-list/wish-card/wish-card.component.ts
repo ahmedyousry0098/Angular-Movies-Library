@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { faHeart, faStar } from '@fortawesome/free-solid-svg-icons';
 import { faStar as faOutlineStar } from '@fortawesome/free-regular-svg-icons';
 import { IMovie } from 'src/app/movies/interfaces/movie.interface';
@@ -18,12 +18,14 @@ export class WishCardComponent {
   outlinedStarIcon = faOutlineStar;
   constructor(private moviesService: MoviesService, private router: Router) {}
   ngOnInit(): void {
-    this.rate = Math.round(this.movie.vote_average / 2);
+    if (this.movie.vote_average) {
+      this.rate = Math.round(this.movie.vote_average / 2);
+    } else {
+      this.rate = 0;
+    }
   }
 
-  removeFromFavorite(id: number): void {
-    this.moviesService.favHandler(id, false).subscribe((response) => {
-      console.log(response);
-    });
+  removeFromFavorite(movie: IMovie): void {
+    this.moviesService.setFavorites(movie, false);
   }
 }

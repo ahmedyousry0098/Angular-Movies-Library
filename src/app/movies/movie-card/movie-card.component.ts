@@ -1,6 +1,7 @@
 import { Component, Input } from '@angular/core';
 import { faHeart } from '@fortawesome/free-solid-svg-icons';
 import { IMovie } from '../interfaces/movie.interface';
+import { MoviesService } from '../movies.service';
 
 @Component({
   selector: 'app-movie-card',
@@ -12,13 +13,9 @@ export class MovieCardComponent {
   @Input() moviesDataResponse: IMovie[] = [];
   favMovie!: IMovie;
   favMovieId!: number;
-
-  addMovieToFav(id: number) {
-    this.favMovieId = id;
-    this.moviesDataResponse.forEach((movie) => {
-      if (movie.id === this.favMovieId) {
-        movie.is_Fav = !movie.is_Fav;
-      }
-    });
+  constructor(private moviesService: MoviesService) {}
+  addMovieToFav(event: Event, movie: IMovie): void {
+    event.stopPropagation();
+    this.moviesService.setFavorites(movie, !movie.is_Fav);
   }
 }

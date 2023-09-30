@@ -1,7 +1,8 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { environment } from '../environments/environment';
-import { Observable } from 'rxjs';
+import { Observable, BehaviorSubject, forkJoin } from 'rxjs';
+import { map } from 'rxjs/operators';
 import {
   IMovie,
   IMovieResponse,
@@ -12,7 +13,13 @@ import {
   providedIn: 'root',
 })
 export class MoviesService {
-  constructor(private _HttpClient: HttpClient) {}
+  favoritesSubject = new BehaviorSubject<IMovie[]>([]);
+
+  constructor(private _HttpClient: HttpClient) {
+    this.fetchAllFavorites().subscribe((favoriteMovies) => {
+      this.favoritesSubject.next(favoriteMovies);
+    });
+  }
 
   fetchProductsPage(page: number = 1): Observable<IMovieResponse> {
     return this._HttpClient.get<IMovieResponse>(
@@ -47,6 +54,30 @@ export class MoviesService {
       }
     );
   }
+
+  //favorites
+  getFavorites() {
+    return this.favoritesSubject.asObservable();
+  }
+  setFavorites(movie: IMovie, favorite: boolean): void {
+    this.favHandler(movie.id, favorite).subscribe((response) => {
+      console.log(response);
+      const favList = this.favoritesSubject.value;
+      if (!favorite) {
+        const movieIndex: number = favList.findIndex(
+          (movieItem: IMovie) => movieItem.id === movie.id
+        );
+        if (movieIndex !== -1) {
+          favList.splice(movieIndex, 1);
+        }
+      } else {
+        favList.push(movie);
+      }
+      this.favoritesSubject.next(favList);
+    });
+  }
+
+  //helpers for favorites
   fetchFavoriteMovies(page: number): Observable<IMovieResponse> {
     return this._HttpClient.get<IMovieResponse>(
       `${environment.BASE_URL}/account/20496778/favorite/movies`,
@@ -57,9 +88,44 @@ export class MoviesService {
       }
     );
   }
+  /**
+   * Using the`fetchFavoriteMovies` function to fetch all favorite pages.
+   * @returns [Array<Imovie>]
+   */
+  fetchAllFavorites(): Observable<IMovie[]> {
+    let x: number = 1;
+    let favorites: IMovie[] = [];
+    let fetchedList: IMovie[] = [];
+
+    const fetchObservables: Observable<IMovie[]>[] = [];
+
+    do {
+      const observable = this.fetchFavoriteMovies(x).pipe(
+        map((data) => {
+          fetchedList = data.results;
+          return data.results;
+        })
+      );
+      fetchObservables.push(observable);
+
+      x++;
+      console.log(`ran ${x} times`);
+    } while (fetchedList.length > 0); // You should define maxNumberOfRequests
+
+    return forkJoin(fetchObservables).pipe(
+      map((results) => {
+        // Combine the results from all HTTP requests into a single array
+        results.forEach((fetchedList) => {
+          favorites = [...favorites, ...fetchedList];
+        });
+        this.favoritesSubject.next(favorites);
+        return favorites;
+      })
+    );
+  }
 
   favHandler(MovieId: number, favorite: boolean): Observable<any> {
-    //TODO: Add params like this: {"media_type": "movie", "media_id": 603, "favorite": true}
+    // {"media_type": "movie", "media_id": 603, "favorite": true}
     return this._HttpClient.post(
       `${environment.BASE_URL}/account/${environment.ACCOUNT_ID}/favorite`,
       {
@@ -75,4 +141,17 @@ export class MoviesService {
       }
     );
   }
+
+  amIFavorite(movie: IMovie) {
+    const existedMovie = this.favoritesSubject.value.find(
+      (favMovie) => favMovie.id === movie.id
+    );
+    if (existedMovie) {
+      movie.is_Fav = true;
+    } else {
+      movie.is_Fav = false;
+    }
+  }
+
+  // ...
 }
