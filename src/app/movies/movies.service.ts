@@ -78,7 +78,7 @@ export class MoviesService {
   }
 
   //helpers for favorites
-  fetchFavoriteMovies(page: number): Observable<IMovieResponse> {
+  private fetchFavoriteMovies(page: number): Observable<IMovieResponse> {
     return this._HttpClient.get<IMovieResponse>(
       `${environment.BASE_URL}/account/20496778/favorite/movies`,
       {
@@ -92,7 +92,7 @@ export class MoviesService {
    * Using the`fetchFavoriteMovies` function to fetch all favorite pages.
    * @returns [Array<Imovie>]
    */
-  fetchAllFavorites(): Observable<IMovie[]> {
+  private fetchAllFavorites(): Observable<IMovie[]> {
     let x: number = 1;
     let favorites: IMovie[] = [];
     let fetchedList: IMovie[] = [];
@@ -110,7 +110,7 @@ export class MoviesService {
 
       x++;
       console.log(`ran ${x} times`);
-    } while (fetchedList.length > 0); // You should define maxNumberOfRequests
+    } while (fetchedList.length > 0);
 
     return forkJoin(fetchObservables).pipe(
       map((results) => {
@@ -124,7 +124,7 @@ export class MoviesService {
     );
   }
 
-  favHandler(MovieId: number, favorite: boolean): Observable<any> {
+  private favHandler(MovieId: number, favorite: boolean): Observable<any> {
     // {"media_type": "movie", "media_id": 603, "favorite": true}
     return this._HttpClient.post(
       `${environment.BASE_URL}/account/${environment.ACCOUNT_ID}/favorite`,
