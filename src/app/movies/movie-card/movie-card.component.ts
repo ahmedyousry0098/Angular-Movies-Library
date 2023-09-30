@@ -10,6 +10,7 @@ import { IMovie } from '../interfaces/movie.interface';
 export class MovieCardComponent {
   faHeart = faHeart;
   @Input() moviesDataResponse: IMovie[] = [];
+  @Input() recommendedMovies: IMovie[] = [];
   favMovie!: IMovie;
   favMovieId!: number;
 

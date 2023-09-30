@@ -62,7 +62,7 @@
             <h6 class="ms-4">
               Language:
               <span class="text-uppercase pe-2 me-2 border-end fw-normal">
-                {{ movie.original_language | uppercase }}
+                {{ movie.original_language }}
               </span>
             </h6>
           </div>
@@ -83,3 +83,7 @@
     </ngx-spinner>
   </div>
 </ng-template>
+<div class="container">
+  <h3>Recommendations of same category</h3>
+  <app-movie-card [moviesDataResponse]="recommendedMovies"></app-movie-card>
+</div>
