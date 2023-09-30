@@ -18,11 +18,12 @@ export class MoviesListComponent {
   constructor(private moviesService: MoviesService, private _Router: Router) {}
   ngOnInit() {
     this.moviesService.getFavorites().subscribe((favorites) => {
-      this.fetchProducts(1);
+      this.fetchProducts(this.ngbPage);
     });
   }
 
   fetchProducts(page: number) {
+    this.ngbPage = page;
     this.moviesService.fetchProductsPage(page).subscribe((data) => {
       const movies = data.results;
       movies.forEach((movie) => {

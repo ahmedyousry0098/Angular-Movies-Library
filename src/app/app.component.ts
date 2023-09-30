@@ -8,5 +8,4 @@ import { MoviesService } from './movies/movies.service';
 })
 export class AppComponent {
   title = 'Movie_Library';
-  constructor(private moviesService: MoviesService) {}
 }

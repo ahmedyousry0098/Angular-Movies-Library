@@ -8,9 +8,6 @@ import { IMovie } from 'src/app/movies/interfaces/movie.interface';
 })
 export class WishListPageComponent {
   allFavoriteMovies: IMovie[] = [];
-  ngbPage: number = 1;
-  pageSize: number = 20;
-  collectionSize: number = 10000; // assuming free membership
   constructor(private moviesService: MoviesService) {}
   ngOnInit() {
     // this.fetchFavorites(1);
