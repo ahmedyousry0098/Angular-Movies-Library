@@ -2,10 +2,17 @@
   height: 250px;
   width: 180px;
 }
+#img-container img {
+  transition: all 0.3s ease-in-out;
+}
+#img-container img:hover {
+  scale: 1.1;
+}
 .hover-pointer:hover {
   cursor: pointer;
 }
 .title-link:hover {
+  transition: all 0.3s ease-in-out;
   color: #ffe353;
 }
 .unlike-btn {
