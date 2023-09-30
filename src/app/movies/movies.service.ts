@@ -152,6 +152,4 @@ export class MoviesService {
       movie.is_Fav = false;
     }
   }
-
-  // ...
 }
