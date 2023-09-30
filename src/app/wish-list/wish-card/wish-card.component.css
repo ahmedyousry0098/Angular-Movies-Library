@@ -2,15 +2,20 @@
   height: 250px;
   width: 180px;
 }
+.hover-pointer:hover {
+  cursor: pointer;
+}
+.title-link:hover {
+  color: #ffe353;
+}
 .unlike-btn {
-  color:#FFE353;
+  color: #ffe353;
   transition: all 0.3s ease-in-out;
 }
 .unlike-btn:hover {
-  cursor: pointer;
   scale: 1.2;
 }
-.unlike-btn:active{
+.unlike-btn:active {
   color: black;
 }
 @media (max-width: 1200px) {
