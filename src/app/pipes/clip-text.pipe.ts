@@ -10,7 +10,7 @@ export class ClipTextPipe implements PipeTransform {
       if (value.length > desiredLength) {
         return `${value.substring(0, desiredLength)}...`;
       } else {
-        return value.substring(0, desiredLength);
+        return value;
       }
     } else {
       return value;

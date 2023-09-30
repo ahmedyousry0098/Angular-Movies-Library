@@ -3,15 +3,15 @@
         <div class="row">
             <div class="col-lg-5 col-md-4">
                 <div id="img-container">
-                    <img src="https://image.tmdb.org/t/p/w500/{{ movie.poster_path }}" alt="" class="rounded-4"
-                        style="object-fit: cover; width: inherit; height: inherit;">
+                    <img src="https://image.tmdb.org/t/p/w500/{{ movie.poster_path }}" alt="" class="rounded-4 hover-pointer"
+                        style="object-fit: cover; width: inherit; height: inherit;" routerLink="/details/{{movie.id}}">
                 </div>
             </div>
             <div class="col">
                 <div class="w-100">
                     <div class="w-100 d-flex align-items-center justify-content-between mt-3">
-                        <h3>{{movie.title}}</h3>
-                        <fa-icon class="unlike-btn" [icon]="heartIcon" size="xl"
+                        <h3 routerLink="/details/{{movie.id}}" class="title-link hover-pointer">{{movie.title}}</h3>
+                        <fa-icon class="unlike-btn hover-pointer" [icon]="heartIcon" size="xl"
                             (click)="removeFromFavorite(movie)"></fa-icon>
                     </div>
                     <p style="color: #858585; font-size: small;">{{movie.release_date | date }}</p>
@@ -23,7 +23,7 @@
                         </div>
                         <span>{{movie.vote_count}}</span>
                     </div>
-                    <p>{{movie.overview | clipText: '160'}}</p>
+                    <p>{{movie.overview | clipText: '150'}}</p>
                 </div>
             </div>
         </div>
