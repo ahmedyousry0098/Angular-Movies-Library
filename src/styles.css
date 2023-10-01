@@ -2,6 +2,7 @@
 
 :root {
     --main_yellow: rgb(255, 227, 83);
+    --main_yellow_hover: rgb(255, 175, 83);
     --main-gray: rgb(243, 241, 241)
 }
 
@@ -9,13 +10,19 @@
     background-color: var(--main_yellow) !important;
 }
 
-.search-icon {
+.search-icon, .carousel-btn {
     background-color: var(--main_yellow);
     border-radius: 10px;
 }
 
+.carousel-btn:hover {
+    background-color: var(--main_yellow_hover);
+    box-shadow: -5px 3px 10px 3px rgb(255, 175, 83, 0.1);
+    transition: 0.5s;
+}
+
 .search-icon:hover {
     opacity: 0.8;
-    box-shadow: -5px 3px 10px rgba(255, 200, 0, 0.1);
+    box-shadow: -5px 3px 10px 3px rgb(255, 175, 83, 0.1);
     transition: 0.5s;
 }

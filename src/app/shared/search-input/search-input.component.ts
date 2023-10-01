@@ -10,6 +10,7 @@ import { faSearch } from '@fortawesome/free-solid-svg-icons';
 export class SearchInputComponent {
   faSearch = faSearch
 
+  @Input() realTime: boolean = false
   @Input() initialSearchTerm: string = ''
   @Output() queryEmitter = new EventEmitter<string>()
   searchForm = this.fb.group({

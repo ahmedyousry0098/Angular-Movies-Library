@@ -74,7 +74,7 @@
 <ng-template #loading>
   <div class="d-flex justify-content-center align-items-center">
     <ngx-spinner
-      bdColor="rgba(20,20,20,0.7)"
+      bdColor="rgba(20,20,20,0.6)"
       size="medium"
       color="#fff"
       type="pacman"
@@ -83,5 +83,8 @@
     </ngx-spinner>
   </div>
 </ng-template>
+
 <!-- //recommendedMovies -->
-<app-carousal [recommendedMovies]="recommendedMovies"></app-carousal>
+<div *ngIf="recommendedMovies.length">
+  <app-carousal [movies]="recommendedMovies" [title]="'Recommended Movies'"></app-carousal>
+</div>

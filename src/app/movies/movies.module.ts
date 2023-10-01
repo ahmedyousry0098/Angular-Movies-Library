@@ -17,6 +17,7 @@ import { PaginationComponent } from './pagination/pagination.component';
 import { SearchComponent } from './search/search.component';
 import { SharedModule } from '../shared/shared.module';
 import { CarousalComponent } from './carousal/carousal.component';
+import { HomeComponent } from './home/home.component';
 
 @NgModule({
   declarations: [
@@ -28,6 +29,7 @@ import { CarousalComponent } from './carousal/carousal.component';
     PaginationComponent,
     SearchComponent,
     CarousalComponent,
+    HomeComponent,
   ],
   imports: [
     CommonModule,

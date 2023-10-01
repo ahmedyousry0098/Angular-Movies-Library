@@ -1,4 +1,4 @@
-<h2 class="m-lg-5">Recommended Movies</h2>
+<h2 class="m-lg-5">{{title}}</h2>
 <div class="container my-5" #container>
   <div
     class="left fw-bold d-flex justify-content-center align-items-center cardCursor"
@@ -6,7 +6,7 @@
     (click)="currentPage != 1 && changePage(-1)"
     [ngClass]="{ disabled: currentPage === 1 }"
   >
-    <<
+    <span class="carousel-btn p-3"><<</span>
   </div>
   <div class="cards" [ngClass]="{ 'w-100': totalPages === 1 }">
     <div
@@ -15,7 +15,7 @@
     >
       <div
         class="card"
-        *ngFor="let movie of recommendedMovies"
+        *ngFor="let movie of movies"
         [ngStyle]="{ width: cardWidth }"
       >
         <div class="col">
@@ -73,6 +73,6 @@
     (click)="currentPage != totalPages && changePage(+1)"
     [ngClass]="{ disabled: currentPage === totalPages }"
   >
-    >>
+    <span class="p-3 carousel-btn">>></span>
   </div>
 </div>

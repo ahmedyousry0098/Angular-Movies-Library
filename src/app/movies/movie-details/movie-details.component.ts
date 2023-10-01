@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { MoviesService } from '../movies.service';
+import { MoviesService } from '../services/movies.service';
 import { IMovie, IUniqueMovie } from '../interfaces/movie.interface';
 import { ActivatedRoute } from '@angular/router';
 import { environment } from 'src/app/environments/environment';
@@ -42,9 +42,9 @@ export class MovieDetailsComponent {
     this._Spinner.show();
     this._ActivatedRoute.paramMap.subscribe((params) => {
       this.movieId = +params.get('id')!;
+      this.fetchProduct(this.movieId);
+      this.fetchRecommendedMovies(this.movieId);
     });
-    this.fetchProduct(this.movieId);
-    this.fetchRecommendedMovies(this.movieId);
   }
 
   fetchProduct(id: number) {

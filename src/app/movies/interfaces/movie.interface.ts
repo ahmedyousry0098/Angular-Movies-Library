@@ -73,3 +73,12 @@ export interface IUniqueMovie {
   vote_average: number;
   vote_count: number;
 }
+
+export interface IUpcomingMovies extends IMovieResponse {
+  dates: {
+    maximum: string;
+    minimum: string
+  }
+}
+
+export interface ITopRatedMovies extends IMovieResponse {}

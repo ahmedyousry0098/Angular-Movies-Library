@@ -1,4 +1,4 @@
-<form [formGroup]="searchForm" (ngSubmit)="emitSearchQuery()" >
+<form [formGroup]="searchForm" (ngSubmit)="emitSearchQuery()">
     <div class=" d-flex flex-row align-items-center justify-content-center">
         <div class="w-75 mx-3">
             <input 
@@ -6,6 +6,7 @@
                 placeholder="Search"
                 type="text"
                 formControlName="searchTerm"
+                (input)="realTime && emitSearchQuery()"
             >
         </div>
         <button class="p-3 search-icon border-0" type="submit" [disabled]="searchForm.invalid">

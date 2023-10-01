@@ -1,12 +1,14 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { environment } from '../environments/environment';
+import { environment } from '../../environments/environment';
 import { Observable } from 'rxjs';
 import {
   IMovie,
   IMovieResponse,
+  ITopRatedMovies,
   IUniqueMovie,
-} from './interfaces/movie.interface';
+  IUpcomingMovies,
+} from '../interfaces/movie.interface';
 
 @Injectable({
   providedIn: 'root',
@@ -56,6 +58,14 @@ export class MoviesService {
         },
       }
     );
+  }
+
+  fetchUpcomingMovies(): Observable<IUpcomingMovies> {
+    return this._HttpClient.get<IUpcomingMovies>(`${environment.BASE_URL}/movie/upcoming`)
+  }
+
+  fetchTopRatedMovies(): Observable<ITopRatedMovies> {
+    return this._HttpClient.get<ITopRatedMovies>(`${environment.BASE_URL}/movie/top_rated`)
   }
 
   favHandler(MovieId: number, favorite: boolean): Observable<any> {

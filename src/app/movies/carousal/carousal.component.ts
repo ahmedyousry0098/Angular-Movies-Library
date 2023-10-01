@@ -13,7 +13,8 @@ import { IMovie } from '../interfaces/movie.interface';
   styleUrls: ['./carousal.component.css'],
 })
 export class CarousalComponent {
-  @Input() recommendedMovies!: IMovie[];
+  @Input() movies!: IMovie[];
+  @Input() title: string = ''
   totalCards: number = 21;
   currentPage: number = 1;
   pagePosition: string = '0%';
