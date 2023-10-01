@@ -2,6 +2,7 @@
 <main class="p-md-3">
     <div class="container m-auto pt-4">
         <h1 class="p-3">Wish-list</h1>
+        <app-wish-none *ngIf="allFavoriteMovies.length===0"></app-wish-none>
         <div class="row row-cols-lg-2 mt-3">
             <app-wish-card *ngFor="let movie of allFavoriteMovies" [movie]="movie"></app-wish-card>
         </div>
