@@ -3,8 +3,15 @@
   <div class="mt-5">
     <app-search-input (queryEmitter)="handleSearch($event)"></app-search-input>
   </div>
-  <app-movie-card [moviesDataResponse]="moviesDataResponse"></app-movie-card>
-  <app-pagination 
+  <!-- //movie list -->
+  <div>
+    <app-movie-card
+      class="row row-cols-lg-12 row-cols-md-6 g-4 container mx-auto my-5"
+      [moviesDataResponse]="moviesDataResponse"
+    ></app-movie-card>
+  </div>
+
+  <app-pagination
     (pageEmitter)="fetchProducts($event)"
     [collectionSize]="collectionSize"
     [pageSize]="pageSize"

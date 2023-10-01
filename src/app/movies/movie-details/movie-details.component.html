@@ -83,7 +83,5 @@
     </ngx-spinner>
   </div>
 </ng-template>
-<div class="container">
-  <h3>Recommendations of same category</h3>
-  <app-movie-card [moviesDataResponse]="recommendedMovies"></app-movie-card>
-</div>
+<!-- //recommendedMovies -->
+<app-carousal [recommendedMovies]="recommendedMovies"></app-carousal>

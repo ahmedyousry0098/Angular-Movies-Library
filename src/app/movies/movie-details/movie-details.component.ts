@@ -4,11 +4,16 @@ import { IMovie, IUniqueMovie } from '../interfaces/movie.interface';
 import { ActivatedRoute } from '@angular/router';
 import { environment } from 'src/app/environments/environment';
 import { NgxSpinnerService } from 'ngx-spinner';
+import {
+  NgbCarouselConfig,
+  NgbCarouselModule,
+} from '@ng-bootstrap/ng-bootstrap';
 
 @Component({
   selector: 'app-movie-details',
   templateUrl: './movie-details.component.html',
   styleUrls: ['./movie-details.component.css'],
+  providers: [NgbCarouselConfig],
 })
 export class MovieDetailsComponent {
   moviesDataResponse: IMovie[] = [];
@@ -16,10 +21,16 @@ export class MovieDetailsComponent {
   pageSize: number = 1;
 
   constructor(
+    config: NgbCarouselConfig,
     private _MoviesService: MoviesService,
     private _ActivatedRoute: ActivatedRoute,
     private _Spinner: NgxSpinnerService
-  ) {}
+  ) {
+    config.interval = 10000;
+    config.wrap = false;
+    config.keyboard = false;
+    config.pauseOnHover = false;
+  }
 
   errMsg?: string = '';
   movieId: number = 0;
@@ -33,13 +44,13 @@ export class MovieDetailsComponent {
       this.movieId = +params.get('id')!;
     });
     this.fetchProduct(this.movieId);
+    this.fetchRecommendedMovies(this.movieId);
   }
 
   fetchProduct(id: number) {
     this._MoviesService.fetchProductById(id).subscribe({
       next: (movie) => {
         this.movie = movie;
-        this.fetchProducts(this.pageSize);
         this._Spinner.hide();
       },
       error: (err) => {
@@ -48,19 +59,9 @@ export class MovieDetailsComponent {
       },
     });
   }
-  fetchProducts(page: number) {
-    this._MoviesService.fetchProductsPage(page).subscribe((data) => {
-      this.moviesDataResponse = data.results;
-      this.pageSize = data.results.length;
-
-      this.genre_Id = this.movie?.genres.map((id) => id.id) || [];
-      this.moviesDataResponse.forEach((recommendedMovies) => {
-        if (
-          recommendedMovies.genre_ids.some((r) => this.genre_Id.includes(r))
-        ) {
-          this.recommendedMovies.push(recommendedMovies);
-        }
-      });
+  fetchRecommendedMovies(movieId: number) {
+    this._MoviesService.fetchRecommendedMovies(movieId).subscribe((data) => {
+      this.recommendedMovies = data.results;
     });
   }
 }

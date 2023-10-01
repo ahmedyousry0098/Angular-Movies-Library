@@ -5,7 +5,7 @@ import { MoviesRoutingModule } from './movies-routing.module';
 import { MovieDetailsComponent } from './movie-details/movie-details.component';
 import { MoviesListComponent } from './movies-list/movies-list.component';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
-import { NgbRating } from '@ng-bootstrap/ng-bootstrap';
+import { NgbCarouselModule, NgbRating } from '@ng-bootstrap/ng-bootstrap';
 import { NgbPaginationModule } from '@ng-bootstrap/ng-bootstrap';
 import { MovieCardComponent } from './movie-card/movie-card.component';
 import { BarRatingModule } from 'ngx-bar-rating';
@@ -16,6 +16,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { PaginationComponent } from './pagination/pagination.component';
 import { SearchComponent } from './search/search.component';
 import { SharedModule } from '../shared/shared.module';
+import { CarousalComponent } from './carousal/carousal.component';
 
 @NgModule({
   declarations: [
@@ -26,6 +27,7 @@ import { SharedModule } from '../shared/shared.module';
     ExtractYearPipe,
     PaginationComponent,
     SearchComponent,
+    CarousalComponent,
   ],
   imports: [
     CommonModule,
@@ -37,6 +39,7 @@ import { SharedModule } from '../shared/shared.module';
     BrowserAnimationsModule,
     NgbPaginationModule,
     SharedModule,
+    NgbCarouselModule,
   ],
 })
 export class MoviesModule {}
