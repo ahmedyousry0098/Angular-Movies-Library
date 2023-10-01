@@ -100,4 +100,17 @@
 
 .cardCursor {
   cursor: pointer;
+  transition: 0.3s;
+  border-radius: 24px;
+}
+
+.cardCursor:hover {
+  transition: 0.3s;
+  scale: 1.02;
+  box-shadow: 0 0 10px 0 rgb(181, 180, 180);
+}
+
+.hart-icon {
+  top: 310px;
+  right: 10px;
 }

@@ -21,12 +21,17 @@ export class MoviesListComponent {
 
   ngOnInit() {
     this.ngbPage = Number(localStorage.getItem('last-page')) || 1
-    this.fetchMovies(this.ngbPage)
+    this.moviesService.getFavorites().subscribe((favorites) => {
+      this.fetchMovies(this.ngbPage);
+    })
   }
 
   fetchMovies(page: number) {
     this.moviesService.fetchProductsPage(page).subscribe((data) => {
-      this.moviesDataResponse = data.results.filter(movie => movie.poster_path && !movie.adult && movie.title);
+      this.moviesDataResponse = data.results.filter(movie => movie.poster_path && !movie.adult);
+      this.moviesDataResponse.forEach((movie) => {
+        this.moviesService.amIFavorite(movie);
+      });
       this.pageSize = data.results.length
     })
     localStorage.setItem('last-page', page.toString())
