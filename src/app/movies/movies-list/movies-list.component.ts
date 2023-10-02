@@ -10,30 +10,30 @@ import { Router } from '@angular/router';
   styleUrls: ['./movies-list.component.css'],
 })
 export class MoviesListComponent {
-  moviesDataResponse: IMovie[] = []
-  ngbPage: number = 1
-  pageSize: number = 20
-  collectionSize: number = 10000 // assuming free membership
+  moviesDataResponse: IMovie[] = [];
+  ngbPage: number = Number(localStorage.getItem('last-page')) || 1;
+  pageSize: number = 20;
+  collectionSize: number = 10000; // assuming free membership
 
-  constructor(
-    private moviesService: MoviesService,
-  ) {}
+  constructor(private moviesService: MoviesService) {}
 
   ngOnInit() {
-    this.ngbPage = Number(localStorage.getItem('last-page')) || 1
     this.moviesService.getFavorites().subscribe((favorites) => {
       this.fetchMovies(this.ngbPage);
-    })
+    });
   }
 
   fetchMovies(page: number) {
+    this.ngbPage = page;
+    localStorage.setItem('last-page', this.ngbPage.toString());
     this.moviesService.fetchProductsPage(page).subscribe((data) => {
-      this.moviesDataResponse = data.results.filter(movie => movie.poster_path && !movie.adult);
+      this.moviesDataResponse = data.results.filter(
+        (movie) => movie.poster_path && !movie.adult
+      );
       this.moviesDataResponse.forEach((movie) => {
         this.moviesService.amIFavorite(movie);
       });
-      this.pageSize = data.results.length
-    })
-    localStorage.setItem('last-page', page.toString())
+      this.pageSize = data.results.length;
+    });
   }
 }
