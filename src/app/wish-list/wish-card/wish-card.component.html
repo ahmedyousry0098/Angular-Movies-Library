@@ -2,8 +2,8 @@
     <div class="rounded-4 shadow p-4">
         <div class="row">
             <div class="col-lg-5 col-md-4">
-                <div id="img-container">
-                    <img src="https://image.tmdb.org/t/p/w500/{{ movie.poster_path }}" alt="" class="rounded-4 hover-pointer"
+                <div id="img-container" class="rounded-4 overflow-hidden">
+                    <img src="https://image.tmdb.org/t/p/w500/{{ movie.poster_path }}" alt="" class=" hover-pointer"
                         style="object-fit: cover; width: inherit; height: inherit;" routerLink="/details/{{movie.id}}">
                 </div>
             </div>
