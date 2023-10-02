@@ -18,6 +18,7 @@ import { SearchComponent } from './search/search.component';
 import { SharedModule } from '../shared/shared.module';
 import { CarousalComponent } from './carousal/carousal.component';
 import { HomeComponent } from './home/home.component';
+import { RatingFormatPipe } from '../pipes/rating-format.pipe';
 
 @NgModule({
   declarations: [
@@ -30,6 +31,7 @@ import { HomeComponent } from './home/home.component';
     SearchComponent,
     CarousalComponent,
     HomeComponent,
+    RatingFormatPipe
   ],
   imports: [
     CommonModule,

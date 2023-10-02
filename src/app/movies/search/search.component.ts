@@ -30,6 +30,9 @@ export class SearchComponent {
       this.term = window.history.state.term
       this.searchTerm.asObservable().subscribe(value => {
           this.fetchMovies(value)
+          this._MoviesService.getFavorites().subscribe((favorites) => {
+            this.fetchMovies(value)
+          })
       })
     })
   }
@@ -38,9 +41,13 @@ export class SearchComponent {
     this._MoviesService.searchMovie(searchTerm).subscribe({
       next: (response) => {
         this.movies = response.results.filter(movie => movie.poster_path && movie.title)
+        this.movies.forEach((movie) => {
+          this._MoviesService.amIFavorite(movie);
+        });
         this._Spinner.hide()
       }, 
       error: (err) => {
+        this._Spinner.hide()
         console.log(err);
       }
     })
