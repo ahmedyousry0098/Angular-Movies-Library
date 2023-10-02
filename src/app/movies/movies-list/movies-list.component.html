@@ -1,14 +1,8 @@
-<div class="container">
+<div class="container m-auto">
   <h2>Popular Movies:</h2>
-  <app-movie-card
-    class="row row-cols-lg-12 row-cols-md-6 g-4 container mx-auto my-5"
-    [moviesDataResponse]="moviesDataResponse"
-  ></app-movie-card>
+  <app-movie-card class="row row-cols-1 row-cols-lg-5 row-cols-md-3 row-cols-sm-2 g-4 container mx-auto my-5"
+    [moviesDataResponse]="moviesDataResponse"></app-movie-card>
 
-  <app-pagination
-    (pageEmitter)="fetchMovies($event)"
-    [collectionSize]="collectionSize"
-    [pageSize]="pageSize"
-    [currentPage]="ngbPage"
-  ></app-pagination>
+  <app-pagination (pageEmitter)="fetchMovies($event)" [collectionSize]="collectionSize" [pageSize]="pageSize"
+    [currentPage]="ngbPage" style="max-width: 100%;"></app-pagination>
 </div>

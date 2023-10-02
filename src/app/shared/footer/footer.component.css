@@ -1,0 +1,8 @@
+.linkedIn-link {
+  text-decoration: none;
+}
+@media (max-width: 768px) {
+  .linkedIn-link {
+    justify-content: center;
+  }
+}
