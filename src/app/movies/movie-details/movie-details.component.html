@@ -1,52 +1,90 @@
-
-<div id="dp-container" *ngIf="movie; else loading" class="d-flex justify-content-center align-items-center">
-    <div class="inner-container w-100 overflow-hidden position-relative d-flex justify-content-center">
-        <div class="w-100 h-100 overflow-hidden position-absolute backdrop-container backdrop" [ngStyle]="{'background': 'url(' + baseURL+movie.backdrop_path+ ') no-repeat center center/ cover fixed'}">
-            <!-- <img [src]="baseURL+movie.backdrop_path" class="w-100 opacity-35 center z-0" style="min-height: 100%;"> -->
+<div
+  id="dp-container"
+  *ngIf="movie; else loading"
+  class="d-flex justify-content-center align-items-center position-relative"
+>
+  <div
+    class="hero w-100 my-5 z-0 text-white d-flex justify-content-center align-items-center"
+    [ngStyle]="{
+      background:
+        'linear-gradient(rgba(0, 0, 0, 0.9), rgba(0, 0, 0, 0.6)), url(' +
+        baseURL +
+        movie.backdrop_path +
+        ') no-repeat center center/cover '
+    }"
+  >
+    <!-- 'background-image': 'url(' + baseURL + movie.backdrop_path + ')' -->
+    <div
+      class="container d-flex justify-content-between align-items-center py-3 z-10"
+    >
+      <div class="row my-5">
+        <div class="col-3">
+          <img
+            [src]="baseURL + movie.poster_path"
+            class="w-100 opacity-100 rounded-3"
+          />
         </div>
-        <div class="container d-flex justify-content-between align-items-center py-3 z-10">
-            <div class="row">
-                <div class="col-3 ">
-                    <img [src]="baseURL+movie.poster_path" class=" w-100 opacity-100 rounded-3">
-                </div>
-                <div class="col-9 d-flex justify-content-center flex-column">
-                    <div>
-                        <h1 class="m-0 p-0 text-white">{{movie.title}} ( {{movie.release_date|extractYear}} )</h1>
-                        <p class="text-white fw-bold link-opacity-75-hover">
-                            <span>{{movie.release_date}}</span>
-                            <span class="text-uppercase pe-2 me-2 border-end"> ( {{movie.original_language}} )</span>
-                            <span *ngFor="let g of movie.genres">
-                                <span> {{g.name}} </span>
-                                <span class="fs-4"> &#x2022; </span>
-                            </span>
-                            <span> ( {{movie.runtime|convertTime}} ) </span>
-                        </p>
-                    </div>
-                    <hr class="text-white">
-                    <div> 
-                        <h2 class="text-white">Overview: </h2>
-                        <p class="text-white fw-bold">{{movie.overview}}</p>
-                    </div>
-
-                    <hr class="text-white">
-
-                    <div>
-                        <p class="text-white fst-italic fs-5 italic"><em>{{movie.tagline}}</em></p>
-                    </div>
-                </div>
+        <div class="col-9 d-flex justify-content-center flex-column">
+          <!-- heading -->
+          <div>
+            <h2 class="m-0 p-0">
+              {{ movie.title }} ( {{ movie.release_date | extractYear }} )
+            </h2>
+            <p class="link-opacity-75-hover">
+              <span>{{ movie.release_date }}</span>
+            </p>
+          </div>
+          <!-- rating -->
+          <div class="d-flex">
+            <ngb-rating [rate]="movie.vote_average"></ngb-rating>
+            <div class="mx-4">{{ movie.vote_count }}</div>
+          </div>
+          <!-- descriptipon -->
+          <p class="my-4">{{ movie.overview }}</p>
+          <!-- category -->
+          <div class="d-flex align-items-center flex-row">
+            <div *ngFor="let g of movie.genres">
+              <div
+                class="btn rounded-5 btn-warning text-black me-2 fw-semibold"
+              >
+                {{ g.name }}
+              </div>
             </div>
+          </div>
+          <!-- info -->
+          <div class="mt-4 d-flex">
+            <h6>
+              Duration:
+              <span class="fw-normal">
+                {{ movie.runtime | convertTime }}
+              </span>
+            </h6>
+            <h6 class="ms-4">
+              Language:
+              <span class="text-uppercase pe-2 me-2 border-end fw-normal">
+                {{ movie.original_language }}
+              </span>
+            </h6>
+          </div>
         </div>
+      </div>
     </div>
+  </div>
 </div>
-
 <ng-template #loading>
-    <div class="d-flex justify-content-center align-items-center">
-        <ngx-spinner 
-            bdColor = "rgba(20,20,20,0.7)" 
-            size = "medium" color = "#fff" 
-            type = "pacman" 
-            >
-            <p class="fs-1 text-center text-muted" > Loading... </p>
-        </ngx-spinner>
-    </div>
+  <div class="d-flex justify-content-center align-items-center">
+    <ngx-spinner
+      bdColor="rgba(20,20,20,0.6)"
+      size="medium"
+      color="#fff"
+      type="pacman"
+    >
+      <p class="fs-1 text-center text-muted">Loading...</p>
+    </ngx-spinner>
+  </div>
 </ng-template>
+
+<!-- //recommendedMovies -->
+<div *ngIf="recommendedMovies.length">
+  <app-carousal [movies]="recommendedMovies" [title]="'Recommended Movies'"></app-carousal>
+</div>

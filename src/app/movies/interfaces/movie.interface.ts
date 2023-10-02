@@ -14,7 +14,7 @@ export interface IMovie {
   video: boolean;
   vote_average: number;
   vote_count: number;
-  is_Fav: boolean;
+  is_Fav?: boolean;
 }
 
 export interface IMovieResponse {
@@ -36,8 +36,8 @@ export interface IUniqueMovie {
   budget: number;
   genres: {
     id: number;
-    name: string
-  } [];
+    name: string;
+  }[];
   homepage: string;
   id: number;
   imdb_id: string;
@@ -51,11 +51,11 @@ export interface IUniqueMovie {
     logo_path: string;
     name: string;
     origin_country: string;
-  } [];
+  }[];
   production_countries: {
     iso_3166_1: string;
     name: string;
-  } [];
+  }[];
   release_date: string;
   revenue: number;
   runtime: number;
@@ -73,3 +73,12 @@ export interface IUniqueMovie {
   vote_average: number;
   vote_count: number;
 }
+
+export interface IUpcomingMovies extends IMovieResponse {
+  dates: {
+    maximum: string;
+    minimum: string
+  }
+}
+
+export interface ITopRatedMovies extends IMovieResponse {}

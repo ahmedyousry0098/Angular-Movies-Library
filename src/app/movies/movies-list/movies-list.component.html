@@ -1,12 +1,14 @@
 <div class="container">
-  <h2>Popular Movies</h2>
-  <div class="mt-5">
-    <app-search-input (queryEmitter)="handleSearch($event)"></app-search-input>
-  </div>
-  <app-movie-card [moviesDataResponse]="moviesDataResponse"></app-movie-card>
-  <app-pagination 
-    (pageEmitter)="fetchProducts($event)"
+  <h2>Popular Movies:</h2>
+  <app-movie-card
+    class="row row-cols-lg-12 row-cols-md-6 g-4 container mx-auto my-5"
+    [moviesDataResponse]="moviesDataResponse"
+  ></app-movie-card>
+
+  <app-pagination
+    (pageEmitter)="fetchMovies($event)"
     [collectionSize]="collectionSize"
     [pageSize]="pageSize"
+    [currentPage]="ngbPage"
   ></app-pagination>
 </div>

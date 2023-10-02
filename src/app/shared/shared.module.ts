@@ -26,7 +26,8 @@ import { PageNotFoundComponent } from './page-not-found/page-not-found.component
   ],
   exports: [
     NavbarComponent,
-    SearchInputComponent
+    SearchInputComponent,
+    FooterComponent
   ]
 })
 export class SharedModule { }

@@ -5,7 +5,7 @@ import { MoviesRoutingModule } from './movies-routing.module';
 import { MovieDetailsComponent } from './movie-details/movie-details.component';
 import { MoviesListComponent } from './movies-list/movies-list.component';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
-import { NgbRating } from '@ng-bootstrap/ng-bootstrap';
+import { NgbCarouselModule, NgbRating } from '@ng-bootstrap/ng-bootstrap';
 import { NgbPaginationModule } from '@ng-bootstrap/ng-bootstrap';
 import { MovieCardComponent } from './movie-card/movie-card.component';
 import { BarRatingModule } from 'ngx-bar-rating';
@@ -16,6 +16,9 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { PaginationComponent } from './pagination/pagination.component';
 import { SearchComponent } from './search/search.component';
 import { SharedModule } from '../shared/shared.module';
+import { CarousalComponent } from './carousal/carousal.component';
+import { HomeComponent } from './home/home.component';
+import { RatingFormatPipe } from '../pipes/rating-format.pipe';
 
 @NgModule({
   declarations: [
@@ -26,6 +29,9 @@ import { SharedModule } from '../shared/shared.module';
     ExtractYearPipe,
     PaginationComponent,
     SearchComponent,
+    CarousalComponent,
+    HomeComponent,
+    RatingFormatPipe
   ],
   imports: [
     CommonModule,
@@ -36,7 +42,8 @@ import { SharedModule } from '../shared/shared.module';
     NgxSpinnerModule.forRoot({ type: 'pacman' }),
     BrowserAnimationsModule,
     NgbPaginationModule,
-    SharedModule
+    SharedModule,
+    NgbCarouselModule,
   ],
 })
 export class MoviesModule {}

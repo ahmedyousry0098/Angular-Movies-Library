@@ -2,7 +2,7 @@ import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { faHeart, faStar } from '@fortawesome/free-solid-svg-icons';
 import { faStar as faOutlineStar } from '@fortawesome/free-regular-svg-icons';
 import { IMovie } from 'src/app/movies/interfaces/movie.interface';
-import { MoviesService } from '../../movies/movies.service';
+import { MoviesService } from '../../movies/services/movies.service';
 import { Router } from '@angular/router';
 
 @Component({

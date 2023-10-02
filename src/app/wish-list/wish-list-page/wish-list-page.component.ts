@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { MoviesService } from '../../movies/movies.service';
+import { MoviesService } from '../../movies/services/movies.service';
 import { IMovie } from 'src/app/movies/interfaces/movie.interface';
 @Component({
   selector: 'app-wish-list-page',

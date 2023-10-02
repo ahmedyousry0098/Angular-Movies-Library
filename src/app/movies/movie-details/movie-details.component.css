@@ -1,14 +1,13 @@
-
-#dp-container {
-    min-height: 100vh;
-    margin: 0 auto !important;
+/* #dp-container {
+  min-height: 100vh;
+  margin: 0 auto !important;
 }
 
 .inner-container {
-    height: 80vh !important;
+  height: 80vh !important;
 }
 
 .backdrop {
-    z-index: -1;
-    filter: blur(2px);
-}
+  z-index: -1;
+  filter: blur(2px);
+} */

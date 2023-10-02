@@ -1,13 +1,15 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { environment } from '../environments/environment';
+import { environment } from '../../environments/environment';
 import { Observable, BehaviorSubject, forkJoin } from 'rxjs';
 import { map } from 'rxjs/operators';
 import {
   IMovie,
   IMovieResponse,
+  ITopRatedMovies,
   IUniqueMovie,
-} from './interfaces/movie.interface';
+  IUpcomingMovies,
+} from '../interfaces/movie.interface';
 
 @Injectable({
   providedIn: 'root',
@@ -54,8 +56,14 @@ export class MoviesService {
       }
     );
   }
+  fetchUpcomingMovies(): Observable<IUpcomingMovies> {
+    return this._HttpClient.get<IUpcomingMovies>(`${environment.BASE_URL}/movie/upcoming`)
+  }
 
-  //favorites
+  fetchTopRatedMovies(): Observable<ITopRatedMovies> {
+    return this._HttpClient.get<ITopRatedMovies>(`${environment.BASE_URL}/movie/top_rated`)
+  }
+
   getFavorites() {
     return this.favoritesSubject.asObservable();
   }
@@ -131,12 +139,6 @@ export class MoviesService {
         media_type: 'movie',
         media_id: MovieId,
         favorite,
-      },
-      {
-        headers: {
-          Accept: 'application/json',
-          Authorization: 'Bearer ' + environment.ACCESS_TOKEN,
-        },
       }
     );
   }

@@ -7,10 +7,15 @@ import { Component, EventEmitter, Input, Output } from '@angular/core';
 })
 export class PaginationComponent {
 
-  currentPage: number = 1
+  @Input() currentPage!: number
   @Input() collectionSize!: number
   @Input() pageSize!: number
   @Output() pageEmitter = new EventEmitter<number>()
+
+  ngOnInit() {
+    console.log(this.currentPage);
+    
+  }
 
   sendPageNumber(page: number) {
     return this.pageEmitter.emit(page)
