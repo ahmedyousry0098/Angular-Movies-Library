@@ -15,7 +15,7 @@ import {
   providedIn: 'root',
 })
 export class MoviesService {
-  favoritesSubject = new BehaviorSubject<IMovie[]>([]);
+  favoritesSubject = new BehaviorSubject<(IMovie | IUniqueMovie)[]>([]);
 
   constructor(private _HttpClient: HttpClient) {
     this.fetchAllFavorites().subscribe((favoriteMovies) => {
@@ -57,22 +57,26 @@ export class MoviesService {
     );
   }
   fetchUpcomingMovies(): Observable<IUpcomingMovies> {
-    return this._HttpClient.get<IUpcomingMovies>(`${environment.BASE_URL}/movie/upcoming`)
+    return this._HttpClient.get<IUpcomingMovies>(
+      `${environment.BASE_URL}/movie/upcoming`
+    );
   }
 
   fetchTopRatedMovies(): Observable<ITopRatedMovies> {
-    return this._HttpClient.get<ITopRatedMovies>(`${environment.BASE_URL}/movie/top_rated`)
+    return this._HttpClient.get<ITopRatedMovies>(
+      `${environment.BASE_URL}/movie/top_rated`
+    );
   }
 
   getFavorites() {
     return this.favoritesSubject.asObservable();
   }
-  setFavorites(movie: IMovie, favorite: boolean): void {
+  setFavorites(movie: IMovie | IUniqueMovie, favorite: boolean): void {
     this.favHandler(movie.id, favorite).subscribe((response) => {
       const favList = this.favoritesSubject.value;
       if (!favorite) {
         const movieIndex: number = favList.findIndex(
-          (movieItem: IMovie) => movieItem.id === movie.id
+          (movieItem: IMovie | IUniqueMovie) => movieItem.id === movie.id
         );
         if (movieIndex !== -1) {
           favList.splice(movieIndex, 1);
@@ -143,7 +147,7 @@ export class MoviesService {
     );
   }
 
-  amIFavorite(movie: IMovie) {
+  amIFavorite(movie: IMovie | IUniqueMovie) {
     const existedMovie = this.favoritesSubject.value.find(
       (favMovie) => favMovie.id === movie.id
     );
