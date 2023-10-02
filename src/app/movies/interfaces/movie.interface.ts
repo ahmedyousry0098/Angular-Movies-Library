@@ -72,6 +72,7 @@ export interface IUniqueMovie {
   video: boolean;
   vote_average: number;
   vote_count: number;
+  is_Fav?: boolean;
 }
 
 export interface IUpcomingMovies extends IMovieResponse {

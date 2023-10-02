@@ -1,34 +1,29 @@
-<div class="container">
-    <div *ngIf="upcomingMovies && topRatedMovies; else loading">
-        <h2>Welcome Back</h2>
-    
-        <div class="mt-5">
-          <app-search-input (queryEmitter)="handleSearch($event)"></app-search-input>
-        </div>
-      
-        <div>
-          <app-carousal [movies]="upcomingMovies" [title]="'Upcoming Movies'"></app-carousal>
-        </div>
-      
-        <div>
-          <app-carousal [movies]="topRatedMovies" [title]="'Top Rated Movies'"></app-carousal>
-        </div>
-      
-        <div>
-          <app-movies-list></app-movies-list>
-        </div>
+<div class="container mx-auto">
+  <div *ngIf="upcomingMovies && topRatedMovies; else loading">
+    <h2>Welcome Back</h2>
+
+    <div class="mt-5">
+      <app-search-input (queryEmitter)="handleSearch($event)"></app-search-input>
     </div>
+
+    <div>
+      <app-carousal [movies]="upcomingMovies" [title]="'Upcoming Movies'"></app-carousal>
+    </div>
+
+    <div>
+      <app-carousal [movies]="topRatedMovies" [title]="'Top Rated Movies'"></app-carousal>
+    </div>
+
+    <div>
+      <app-movies-list></app-movies-list>
+    </div>
+  </div>
 </div>
-  
+
 <ng-template #loading>
-    <div class="d-flex justify-content-center align-items-center">
-      <ngx-spinner
-        bdColor="rgba(20,20,20,0.6)"
-        size="medium"
-        color="#fff"
-        type="pacman"
-      >
-        <p class="fs-1 text-center text-muted">Loading...</p>
-      </ngx-spinner>
-    </div>
+  <div class="d-flex justify-content-center align-items-center">
+    <ngx-spinner bdColor="rgba(20,20,20,0.6)" size="medium" color="#fff" type="pacman">
+      <p class="fs-1 text-center text-muted">Loading...</p>
+    </ngx-spinner>
+  </div>
 </ng-template>

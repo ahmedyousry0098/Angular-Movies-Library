@@ -11,3 +11,10 @@
   z-index: -1;
   filter: blur(2px);
 } */
+.fav-btn {
+  cursor: pointer;
+}
+
+.btn-warning {
+  background-color: rgb(255, 227, 83) !important;
+}

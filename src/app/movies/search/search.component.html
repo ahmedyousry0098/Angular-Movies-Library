@@ -11,7 +11,7 @@
         <div *ngIf="movies.length; else noResult">
             <h2 class="mt-3">Results For: <span class="text-danger">( {{searchTerm.value}} )</span></h2>
             <app-movie-card 
-                class="row row-cols-lg-12 row-cols-md-6 g-4 container mx-auto my-5"
+                class="row row-cols-1 row-cols-lg-5 row-cols-md-3 row-cols-sm-2 g-4 container mx-auto my-5"
                 [moviesDataResponse]="movies"
             ></app-movie-card>
         </div>
