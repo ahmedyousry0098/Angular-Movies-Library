@@ -69,7 +69,6 @@ export class MoviesService {
   }
   setFavorites(movie: IMovie, favorite: boolean): void {
     this.favHandler(movie.id, favorite).subscribe((response) => {
-      console.log(response);
       const favList = this.favoritesSubject.value;
       if (!favorite) {
         const movieIndex: number = favList.findIndex(
@@ -117,7 +116,7 @@ export class MoviesService {
       fetchObservables.push(observable);
 
       x++;
-      console.log(`ran ${x} times`);
+      // console.log(`ran ${x} times`);
     } while (fetchedList.length > 0);
 
     return forkJoin(fetchObservables).pipe(
