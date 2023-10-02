@@ -5,6 +5,7 @@ import { ActivatedRoute } from '@angular/router';
 import { environment } from 'src/app/environments/environment';
 import { NgxSpinnerService } from 'ngx-spinner';
 import { faHeart } from '@fortawesome/free-solid-svg-icons';
+import { faHeart as faOutlinedHeart } from '@fortawesome/free-regular-svg-icons';
 import {
   NgbCarouselConfig,
   NgbCarouselModule,
@@ -20,7 +21,8 @@ export class MovieDetailsComponent {
   moviesDataResponse: IMovie[] = [];
   recommendedMovies: IMovie[] = [];
   pageSize: number = 1;
-  faHeart = faHeart
+  OutlinedHeartIcon = faOutlinedHeart;
+  solidHeartIcon = faHeart;
 
   constructor(
     config: NgbCarouselConfig,
@@ -44,7 +46,9 @@ export class MovieDetailsComponent {
     this._Spinner.show();
     this._ActivatedRoute.paramMap.subscribe((params) => {
       this.movieId = +params.get('id')!;
-      this.fetchProduct(this.movieId);
+      this._MoviesService.getFavorites().subscribe((favorites) => {
+        this.fetchProduct(this.movieId);
+      });
       this.fetchRecommendedMovies(this.movieId);
     });
   }
@@ -52,6 +56,7 @@ export class MovieDetailsComponent {
   fetchProduct(id: number) {
     this._MoviesService.fetchProductById(id).subscribe({
       next: (movie) => {
+        this._MoviesService.amIFavorite(movie);
         this.movie = movie;
         this._Spinner.hide();
       },
@@ -63,7 +68,12 @@ export class MovieDetailsComponent {
   }
   fetchRecommendedMovies(movieId: number) {
     this._MoviesService.fetchRecommendedMovies(movieId).subscribe((data) => {
-      this.recommendedMovies = data.results.filter(movie => movie.poster_path);
+      this.recommendedMovies = data.results.filter(
+        (movie) => movie.poster_path
+      );
     });
+  }
+  toggleFavorite(movie: IUniqueMovie) {
+    this._MoviesService.setFavorites(movie, !movie.is_Fav);
   }
 }
