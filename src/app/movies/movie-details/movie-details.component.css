@@ -14,3 +14,7 @@
 .fav-btn {
   cursor: pointer;
 }
+
+.btn-warning {
+  background-color: rgb(255, 227, 83) !important;
+}
